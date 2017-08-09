@@ -1,7 +1,15 @@
 <h1> <%= @restaurant.name %> </h1>
 <p> <%= @restaurant.address %> </p>
 <p> <%= @restaurant.category %> </p>
+<ul>
+<% @restaurant.reviews.each do |review| %>
+    <li>
+      <%= review.content %>, <%="*" * review.rating %>
+    </li>
+<% end %>
+</ul>
 
 <%= link_to "retour", restaurants_path %>
 <%= link_to "edit", edit_restaurant_path %>
+<%= link_to "post a review", new_restaurant_review_path(@restaurant.id) %>
 <%= link_to "destroy", restaurant_path(@restaurant), method: :delete %>
